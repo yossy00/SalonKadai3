@@ -16,33 +16,33 @@ class ViewController: UIViewController {
     @IBOutlet private weak var resultLabel: UILabel!
     @IBOutlet private weak var number1TextLabel: UILabel!
     @IBOutlet private weak var number2TextLabel: UILabel!
-    var result = Int()
-    
+
     @IBAction func didPressButton(_ sender: Any) {
-      
-        if number1Switch.isOn{
-            let num1 = Int(number1TextField.text ?? "") ?? 0
-            let number1TextString = num1 * -1
-            number1TextLabel.text = String(number1TextString)
-            result += number1TextString
-        }else{
-            let num2 = Int(number1TextField.text ?? "") ?? 0
-            number1TextLabel.text = String(num2)
-            result += num2
+
+        let num1 = Int(number1TextField.text ?? "") ?? 0
+        let num2 = Int(number2TextField.text ?? "") ?? 0
+
+        let signedNum1: Int
+        if number1Switch.isOn {
+            signedNum1 = -num1
+        } else {
+            signedNum1 = num1
         }
-        if number2Switch.isOn{
-            let num3 = Int(number2TextField.text ?? "") ?? 0
-            let number2TextString = num3 * -1
-            number2TextLabel.text = String(number2TextString)
-            result += number2TextString
-        }else{
-            let num4 = Int(number2TextField.text ?? "") ?? 0
-            number2TextLabel.text = String(num4)
-            result += num4
+
+        let signedNum2: Int
+        if number2Switch.isOn {
+            signedNum2 = -num2
+        } else {
+            signedNum2 = num2
         }
+
+        let result = signedNum1 + signedNum2
+
+        number1TextLabel.text = String(signedNum1)
+        number2TextLabel.text = String(signedNum2)
+
         resultLabel.text = String(result)
-        result = 0
-   
+
     }
     
 }
